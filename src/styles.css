@@ -1244,6 +1244,191 @@ main {
   color: var(--accent);
 }
 
+/* ---------- Slides ---------- */
+
+/* Big embossed slide number behind each section */
+.section {
+  position: relative;
+  isolation: isolate;
+}
+
+.section[data-num]::before {
+  content: attr(data-num);
+  position: absolute;
+  z-index: -1;
+  top: 28px;
+  right: -8px;
+  font-size: clamp(7rem, 16vw, 13rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--bg);
+  text-shadow: 6px 6px 12px var(--lo), -6px -6px 12px var(--hi);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Entrance animations. Only hidden while JS is running, so the page
+   still shows everything if scripts fail. */
+.js-reveal .reveal {
+  opacity: 0;
+  transition:
+    opacity 0.7s ease,
+    transform 0.9s cubic-bezier(0.2, 0.75, 0.2, 1),
+    filter 0.7s ease;
+  transition-delay: calc(var(--d, 0) * 90ms);
+  will-change: opacity, transform;
+}
+
+.js-reveal .r-up { transform: translateY(56px); }
+.js-reveal .r-left { transform: translateX(-72px); }
+.js-reveal .r-right { transform: translateX(72px); }
+.js-reveal .r-zoom { transform: scale(0.86); filter: blur(6px); }
+.js-reveal .r-pop { transform: translateY(30px) scale(0.8); }
+.js-reveal .r-flip { transform: perspective(900px) rotateY(-24deg) translateX(40px); }
+
+.js-reveal .reveal.in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* keep the tile hover lift after the entrance has played */
+.js-reveal .stack-tile.reveal.in:hover {
+  transform: translateY(-4px);
+  transition-delay: 0s;
+}
+
+/* Thin progress bar along the top */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* Slide counter on the right */
+.slide-nav {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  z-index: 40;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  transform: translateY(-50%);
+}
+
+.slide-count {
+  display: grid;
+  justify-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.1;
+}
+
+.slide-count strong {
+  font-size: 1.1rem;
+  color: var(--accent);
+}
+
+.slide-count span {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.slide-nav ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 10px 8px;
+  list-style: none;
+  border-radius: 999px;
+  background: var(--bg);
+  box-shadow: var(--raise-sm);
+}
+
+.slide-nav a {
+  position: relative;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  box-shadow: var(--press-sm);
+  transition: height 0.35s ease, background 0.35s ease;
+}
+
+.slide-nav a.active {
+  height: 28px;
+  background: linear-gradient(var(--accent), var(--accent-2));
+  box-shadow: none;
+}
+
+.slide-label {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: var(--bg);
+  box-shadow: var(--raise-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--text);
+  opacity: 0;
+  transform: translate(6px, -50%);
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+
+.slide-nav a:hover .slide-label,
+.slide-nav a:focus-visible .slide-label {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* Full-screen slides that snap into place on bigger screens */
+@media (min-width: 961px) and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+
+  .section {
+    min-height: calc(100vh - 96px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+  }
+
+  .section.hero {
+    display: grid;
+  }
+}
+
+@media (max-width: 1259px) {
+  .slide-nav {
+    display: none;
+  }
+}
+
+/* the ghost number would sit on top of the heading on small screens */
+@media (max-width: 960px) {
+  .section[data-num]::before {
+    display: none;
+  }
+}
+
+/* elements waiting to slide in from the side must not widen the page */
+main {
+  overflow-x: clip;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 960px) {

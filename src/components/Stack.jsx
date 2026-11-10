@@ -4,13 +4,13 @@ export default function Stack() {
   return (
     <section id="tech-stack" data-hue="205" className="section">
       <div className="stack-head">
-        <div className="section-head">
+        <div className="section-head reveal r-left">
           <span className="eyebrow">{stack.eyebrow}</span>
           <h2>{stack.title}</h2>
           <p className="muted">{stack.text}</p>
         </div>
 
-        <div className="code-card neu">
+        <div className="code-card neu reveal r-flip" style={{ '--d': 2 }}>
           <div className="code-bar">
             <i /><i /><i />
             <span>developer.js</span>
@@ -30,8 +30,8 @@ export default function Stack() {
       </div>
 
       <div className="stack-grid">
-        {stack.items.map((s) => (
-          <div key={s.name} className="stack-tile neu">
+        {stack.items.map((s, i) => (
+          <div key={s.name} className="stack-tile neu reveal r-pop" style={{ '--d': i % 5 }}>
             <div className="stack-icon neu-in">
               <img src={s.icon} alt="" loading="lazy" />
             </div>
@@ -41,7 +41,7 @@ export default function Stack() {
         ))}
       </div>
 
-      <div className="more-skills">
+      <div className="more-skills reveal r-up">
         <span className="eyebrow">Also skilled in</span>
         <div className="tag-row">
           {stack.more.map((m) => (

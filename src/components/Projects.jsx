@@ -38,8 +38,8 @@ function Preview({ project }) {
 
 export default function Projects() {
   return (
-    <section id="portfolio" data-hue="320" className="section">
-      <div className="section-head">
+    <section id="portfolio" data-hue="320" data-num="05" className="section">
+      <div className="section-head reveal r-up">
         <span className="eyebrow">{projects.eyebrow}</span>
         <h2>{projects.title}</h2>
         <p className="muted">{projects.text}</p>
@@ -47,7 +47,7 @@ export default function Projects() {
 
       <div className="project-list">
         {projects.items.map((p, i) => (
-          <article key={p.name} className={`project neu ${i % 2 ? 'flip' : ''}`}>
+          <article key={p.name} className={`project neu reveal ${i % 2 ? 'flip r-right' : 'r-left'}`}>
             <div className="project-preview neu-in">
               <Preview project={p} />
             </div>

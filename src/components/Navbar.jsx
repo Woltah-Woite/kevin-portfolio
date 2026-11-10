@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Sun, Moon, Palette, Menu, Close } from './Icons'
 
-const links = [
+export const links = [
   { id: 'home', label: 'Home' },
   { id: 'tech-stack', label: 'Stack' },
   { id: 'about', label: 'About' },

@@ -17,7 +17,7 @@ export default function Contact() {
 
   return (
     <section id="contact" data-hue="28" className="section">
-      <div className="contact-grid neu">
+      <div className="contact-grid neu reveal r-zoom">
         <div className="contact-info">
           <span className="eyebrow">{contact.eyebrow}</span>
           <h2>{contact.title}</h2>

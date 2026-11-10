@@ -5,15 +5,18 @@ import About from './components/About'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
-import { useTheme, useChameleon } from './hooks'
+import SlideNav from './components/SlideNav'
+import { useTheme, useChameleon, useReveal } from './hooks'
 import { profile } from './data/profile'
 
 export default function App() {
   const [theme, toggleTheme] = useTheme()
   const { active, cycling, toggleCycle } = useChameleon()
+  useReveal()
 
   return (
     <>
+      <SlideNav active={active} />
       <Navbar
         active={active}
         theme={theme}

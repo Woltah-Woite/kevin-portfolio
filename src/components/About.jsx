@@ -7,7 +7,7 @@ export default function About() {
   return (
     <section id="about" data-hue="262" className="section">
       <div className="about-grid">
-        <div className="about-main neu">
+        <div className="about-main neu reveal r-left">
           <span className="eyebrow">{about.eyebrow}</span>
           <h2>{about.title}</h2>
           <p className="muted">{about.text}</p>
@@ -26,7 +26,7 @@ export default function About() {
         </div>
 
         <div className="about-side">
-          <div className="info-card neu building">
+          <div className="info-card neu building reveal r-right" style={{ '--d': 1 }}>
             <div className="logo-well neu-in">
               <img src={building.logo} alt="AT-ICE logo" />
             </div>
@@ -37,7 +37,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="info-card neu">
+          <div className="info-card neu reveal r-right" style={{ '--d': 2 }}>
             <span className="eyebrow">{education.label}</span>
             <h3>{education.degree}</h3>
             <p className="school">
@@ -55,7 +55,7 @@ export default function About() {
             </ul>
           </div>
 
-          <div className="info-card neu">
+          <div className="info-card neu reveal r-right" style={{ '--d': 3 }}>
             <span className="eyebrow">{capstone.label}</span>
             <h3>{capstone.title}</h3>
             <p className="meta">{capstone.meta}</p>
