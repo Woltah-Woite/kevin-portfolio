@@ -58,12 +58,18 @@ function TechGrid() {
     }
   }, [open])
 
-  // once the card has its final spot, make sure all of it is on screen
+  // once the card has its final spot, scroll so all of it sits between
+  // the sticky navbar and the bottom of the screen
   useEffect(() => {
     if (open === null || !pos || !cardRef.current) return
     const r = cardRef.current.getBoundingClientRect()
-    const overflow = r.bottom - window.innerHeight + GAP
-    if (overflow > 0) window.scrollBy({ top: Math.min(overflow, r.top - 96), behavior: 'instant' })
+    const nav = document.querySelector('.nav-wrap')?.getBoundingClientRect().bottom ?? 0
+    const top = nav + GAP
+    const bottom = window.innerHeight - GAP
+    let move = 0
+    if (r.top < top) move = r.top - top // hidden under the navbar: scroll up
+    else if (r.bottom > bottom) move = Math.min(r.bottom - bottom, r.top - top) // cut off below: scroll down
+    if (move) window.scrollBy({ top: move, behavior: 'instant' })
   }, [open, pos])
 
   const item = open !== null ? stack.items[open] : null
