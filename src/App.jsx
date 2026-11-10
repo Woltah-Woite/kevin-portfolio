@@ -2,6 +2,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Stack from './components/Stack'
 import About from './components/About'
+import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import { useTheme, useChameleon } from './hooks'
@@ -24,6 +25,7 @@ export default function App() {
         <Hero />
         <Stack />
         <About />
+        <Experience />
         <Projects />
         <Contact />
       </main>

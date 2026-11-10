@@ -11,6 +11,10 @@ export default function About() {
           <span className="eyebrow">{about.eyebrow}</span>
           <h2>{about.title}</h2>
           <p className="muted">{about.text}</p>
+          <div className="goal neu-in">
+            <span className="eyebrow">Career goal</span>
+            <p>{about.goal}</p>
+          </div>
           <ul className="focus-list">
             {about.focus.map((f) => (
               <li key={f} className="neu-in">
@@ -40,6 +44,15 @@ export default function About() {
               {education.school} <span className="chip">{education.year}</span>
             </p>
             <p className="muted small">{education.focus}</p>
+            <ul className="edu-list">
+              {education.previous.map((e) => (
+                <li key={e.level}>
+                  <small>{e.level} · {e.years}</small>
+                  <span>{e.school}</span>
+                  {e.note && <span className="meta">{e.note}</span>}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="info-card neu">

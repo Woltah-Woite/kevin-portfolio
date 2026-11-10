@@ -22,7 +22,7 @@ export const profile = {
     text: 'Clean architecture on the backend, polished UI on the front, built for mobile and desktop.',
   },
   stats: [
-    { value: '7+', label: 'Core technologies' },
+    { value: '10+', label: 'Technologies' },
     { value: '3', label: 'Featured projects' },
     { value: '1', label: 'ERP system in progress' },
     { value: 'PM', label: 'Leading the AT-ICE team' },
@@ -46,14 +46,19 @@ export const stack = {
     { name: 'Laravel', role: 'Backend API', icon: icon('laravel', 'laravel-original') },
     { name: 'MySQL', role: 'Database', icon: icon('mysql', 'mysql-original') },
     { name: 'Redis', role: 'Caching', icon: icon('redis', 'redis-original') },
+    { name: 'Python', role: 'Language', icon: icon('python', 'python-original') },
+    { name: 'Java', role: 'Language', icon: icon('java', 'java-original') },
+    { name: 'C#', role: 'Language', icon: icon('csharp', 'csharp-original') },
   ],
+  more: ['Web Design', 'Game Development', 'Mobile Applications', 'SAP Business One', 'ERP Systems', 'Git & GitHub'],
 }
 
 export const about = {
   eyebrow: 'About me',
   title: 'Driven by intelligent design.',
   text: 'I focus on AI-driven interfaces, computer vision experiments and software systems that feel premium yet stay approachable for the people using them.',
-  focus: ['Software Development', 'Artificial Intelligence', 'Computer Vision', 'UI / UX Design'],
+  goal: 'My goal is to build a strong career in IT: start in frontline support, grow into network administration, and specialize in cybersecurity, keeping company infrastructure safe while delivering secure, reliable technical solutions.',
+  focus: ['Software Development', 'Network Administration', 'Cybersecurity', 'UI / UX Design'],
   capstone: {
     label: 'Capstone highlight',
     title: 'Smart Campus Workspace Finder',
@@ -63,9 +68,13 @@ export const about = {
   education: {
     label: 'Education',
     degree: 'Bachelor of Science in Information Technology',
-    school: 'New York University',
+    school: 'STI College San Jose del Monte',
     year: '4th Year Student',
-    focus: 'Software Systems, UX, Artificial Intelligence, ERP Automation',
+    focus: '2024 to present. Software systems, ERP and enterprise workflows.',
+    previous: [
+      { level: 'Senior High School', school: 'Arellano University, Pasig Campus', years: '2022 to 2024', note: 'STEM strand, With Honors' },
+      { level: 'Junior High School', school: 'Kapt. Eddie T. Reyes Integrated School, Taguig', years: '2017 to 2022' },
+    ],
   },
   building: {
     label: 'Currently building',
@@ -73,6 +82,37 @@ export const about = {
     text: 'Project manager. Inventory, sales, deliveries and HR for Bella Erin.',
     logo: aticeLogo,
   },
+}
+
+export const experience = {
+  eyebrow: 'Experience',
+  title: 'Where I have worked and trained.',
+  jobs: [
+    {
+      role: 'Invoice Encoder & Bookkeeper',
+      place: 'Alexandra Tube Ice Inc.',
+      years: '2024 to 2026',
+      points: [
+        'Encoded raw transaction data and customer invoices into the system.',
+        'Worked with voucher and billing staff to verify records, prepare bills and approve vendor payments.',
+        'Organized financial records to keep company balances accurate.',
+      ],
+    },
+    {
+      role: 'ERP Navigation Training',
+      place: 'STI College',
+      years: '2024 to 2025',
+      points: [
+        'Gained hands-on experience in SAP Business One practice.',
+        'Applied ERP concepts to manage integrated enterprise data and business workflows.',
+      ],
+    },
+  ],
+  seminars: [
+    { title: 'National Youth Convention: Mental Health Awareness', place: 'SM Mall of Asia', date: 'December 2025' },
+    { title: 'GitHub Seminar', place: 'STI College San Jose del Monte', date: 'May 2025' },
+    { title: 'SAP Business One', place: 'STI College San Jose del Monte', date: 'December 2024' },
+  ],
 }
 
 export const projects = {
@@ -132,6 +172,6 @@ export const contact = {
   title: "Let's work together.",
   text: "Have a project or a question? I'd love to hear from you.",
   email: 'kitamotoOTOMOBUS@gmail.com',
-  location: 'Crawford Notch, White Mountain region of New Hampshire',
+  location: 'San Jose del Monte, Bulacan, Philippines',
   phone: '+63 929 229 9667',
 }

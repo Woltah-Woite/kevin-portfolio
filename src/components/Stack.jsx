@@ -40,6 +40,15 @@ export default function Stack() {
           </div>
         ))}
       </div>
+
+      <div className="more-skills">
+        <span className="eyebrow">Also skilled in</span>
+        <div className="tag-row">
+          {stack.more.map((m) => (
+            <span key={m} className="chip">{m}</span>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }
