@@ -1244,6 +1244,64 @@ main {
   justify-self: start;
 }
 
+/* Certificate only: no toolbar or panels, just a light blur behind it */
+.cert-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: grid;
+  place-items: center;
+  background: rgb(10 10 12 / 0.28);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: zoom-out;
+  animation: fade-in 0.15s ease;
+}
+
+.cert-canvas {
+  grid-area: 1 / 1;
+  max-width: 90vw;
+  max-height: 86vh;
+  border-radius: 6px;
+  box-shadow: 0 24px 60px -12px rgb(0 0 0 / 0.45);
+  cursor: default;
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.cert-canvas.shown {
+  opacity: 1;
+  transform: none;
+}
+
+.viewer-spinner {
+  grid-area: 1 / 1;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid rgb(255 255 255 / 0.35);
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+}
+
+.sr-only-focusable {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  clip-path: inset(50%);
+}
+
+.sr-only-focusable:focus-visible {
+  clip-path: none;
+}
+
 /* ---------- Projects ---------- */
 
 .project-list {

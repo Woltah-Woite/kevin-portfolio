@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { certificates } from '../data/profile'
 import { Close, Arrow } from './Icons'
+import CertViewer from './CertViewer'
 
 // Simple medal mark used on every certificate card
 function Medal() {
@@ -15,7 +16,7 @@ function Medal() {
   )
 }
 
-function CertModal({ cert, onClose }) {
+function CertModal({ cert, onClose, onView }) {
   const ref = useRef(null)
 
   useEffect(() => {
@@ -58,9 +59,9 @@ function CertModal({ cert, onClose }) {
         </div>
 
         {cert.file && (
-          <a href={cert.file} target="_blank" rel="noreferrer" className="btn btn-accent">
+          <button type="button" className="btn btn-accent" onClick={onView}>
             View certificate <Arrow />
-          </a>
+          </button>
         )}
       </div>
     </div>,
@@ -70,12 +71,17 @@ function CertModal({ cert, onClose }) {
 
 export default function Certificates() {
   const [open, setOpen] = useState(null)
+  const [viewing, setViewing] = useState(false)
   const lastTile = useRef(null)
 
   const close = useCallback(() => {
     setOpen(null)
     lastTile.current?.focus()
   }, [])
+
+  // closing the certificate goes back to its details
+  const closeViewer = useCallback(() => setViewing(false), [])
+  const openViewer = useCallback(() => setViewing(true), [])
 
   return (
     <section id="certificates" data-hue="45" data-num="05" className="section">
@@ -118,7 +124,12 @@ export default function Certificates() {
         ))}
       </div>
 
-      {open !== null && <CertModal cert={certificates.items[open]} onClose={close} />}
+      {open !== null && !viewing && (
+        <CertModal cert={certificates.items[open]} onClose={close} onView={openViewer} />
+      )}
+      {open !== null && viewing && (
+        <CertViewer file={certificates.items[open].file} title={certificates.items[open].title} onClose={closeViewer} />
+      )}
     </section>
   )
 }
