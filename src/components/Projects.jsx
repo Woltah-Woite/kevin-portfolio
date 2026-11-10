@@ -38,7 +38,7 @@ function Preview({ project }) {
 
 export default function Projects() {
   return (
-    <section id="portfolio" data-hue="320" data-num="05" className="section">
+    <section id="portfolio" data-hue="320" data-num="06" className="section">
       <div className="section-head reveal r-up">
         <span className="eyebrow">{projects.eyebrow}</span>
         <h2>{projects.title}</h2>

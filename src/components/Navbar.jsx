@@ -6,6 +6,7 @@ export const links = [
   { id: 'tech-stack', label: 'Stack' },
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
+  { id: 'certificates', label: 'Certificates' },
   { id: 'portfolio', label: 'Portfolio' },
   { id: 'contact', label: 'Contact' },
 ]

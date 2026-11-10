@@ -3,6 +3,7 @@ import Hero from './components/Hero'
 import Stack from './components/Stack'
 import About from './components/About'
 import Experience from './components/Experience'
+import Certificates from './components/Certificates'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import SlideNav from './components/SlideNav'
@@ -29,6 +30,7 @@ export default function App() {
         <Stack />
         <About />
         <Experience />
+        <Certificates />
         <Projects />
         <Contact />
       </main>

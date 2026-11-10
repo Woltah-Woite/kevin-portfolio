@@ -149,6 +149,7 @@ export const stack = {
       background: 'Led by James Gosling with the idea of write once, run anywhere. It is still a core language for enterprise systems and Android.',
       usage: [
         'Object-oriented programming in my BSIT courses: classes, inheritance and data structures.',
+        'Earned the Oracle Academy Java Fundamentals certificate in 2024.',
       ],
     },
     {
@@ -227,6 +228,27 @@ export const experience = {
     { title: 'National Youth Convention: Mental Health Awareness', place: 'SM Mall of Asia', date: 'December 2025' },
     { title: 'GitHub Seminar', place: 'STI College San Jose del Monte', date: 'May 2025' },
     { title: 'SAP Business One', place: 'STI College San Jose del Monte', date: 'December 2024' },
+  ],
+}
+
+export const certificates = {
+  eyebrow: 'Certificates',
+  title: 'Proof of the work behind the skills.',
+  text: 'Click a certificate to see the full details.',
+  items: [
+    {
+      title: 'Java Fundamentals',
+      award: 'Award of Course Completion',
+      issuer: 'Oracle Academy',
+      course: 'Computer Programming 2',
+      term: 'SY 2023-2024, 2nd Term',
+      awarded: 'June 19, 2024',
+      posted: 'September 5, 2024',
+      summary: 'Awarded for satisfactory completion of all coursework in the Oracle Academy Java Fundamentals course.',
+      skills: ['Java', 'Object-oriented programming', 'Problem solving'],
+      // set to '/certificates/file.pdf' to show a View PDF button
+      file: null,
+    },
   ],
 }
 
