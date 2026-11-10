@@ -929,9 +929,17 @@ main {
   box-shadow: var(--raise-sm);
 }
 
+.logo-preview {
+  position: relative;
+  overflow: hidden;
+}
+
+/* absolute so the % size is based on the box, not the image */
 .logo-preview img {
-  height: 82%;
-  width: auto;
+  position: absolute;
+  inset: 8%;
+  width: 84%;
+  height: 84%;
   object-fit: contain;
   filter: drop-shadow(6px 10px 14px var(--lo));
 }
