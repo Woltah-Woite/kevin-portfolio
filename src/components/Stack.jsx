@@ -33,7 +33,7 @@ export default function Stack() {
         {stack.items.map((s, i) => (
           <div key={s.name} className="stack-tile neu reveal r-pop" style={{ '--d': i % 5 }}>
             <div className="stack-icon neu-in">
-              <img src={s.icon} alt="" loading="lazy" />
+              <img src={s.icon} alt="" width="38" height="38" loading="lazy" decoding="async" />
             </div>
             <strong>{s.name}</strong>
             <span className="muted">{s.role}</span>

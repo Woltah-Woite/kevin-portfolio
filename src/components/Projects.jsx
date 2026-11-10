@@ -3,12 +3,12 @@ import Figure from './Figures'
 
 function Preview({ project }) {
   if (project.image) {
-    return <img src={project.image} alt={project.preview} className="preview-img" />
+    return <img src={project.image} alt={project.preview} className="preview-img" loading="lazy" decoding="async" />
   }
   if (project.logo) {
     return (
       <div className="logo-preview">
-        <img src={project.logo} alt={project.preview} />
+        <img src={project.logo} alt={project.preview} loading="lazy" decoding="async" />
       </div>
     )
   }

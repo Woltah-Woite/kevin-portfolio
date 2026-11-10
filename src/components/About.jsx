@@ -28,7 +28,7 @@ export default function About() {
         <div className="about-side">
           <div className="info-card neu building reveal r-right" style={{ '--d': 1 }}>
             <div className="logo-well neu-in">
-              <img src={building.logo} alt="AT-ICE logo" />
+              <img src={building.logo} alt="AT-ICE logo" width="56" height="56" loading="lazy" decoding="async" />
             </div>
             <div>
               <span className="eyebrow">{building.label}</span>

@@ -9,7 +9,7 @@
 
 :root {
   --hue: 165;
-  transition: --hue 1.2s ease;
+  transition: --hue 0.5s ease;
 
   --bg: hsl(var(--hue) 24% 90%);
   --hi: hsl(var(--hue) 40% 98%);
@@ -69,9 +69,12 @@
   box-sizing: border-box;
 }
 
+/* clip sideways overflow at the screen edge (not the content edge),
+   so the soft card shadows are never cut off */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   scroll-padding-top: 96px;
+  overflow-x: clip;
 }
 
 body {
@@ -82,7 +85,7 @@ body {
   font-size: 16px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img {
@@ -238,7 +241,7 @@ p {
   white-space: nowrap;
   cursor: pointer;
   box-shadow: var(--raise-sm);
-  transition: box-shadow 0.2s, transform 0.2s, color 0.2s;
+  transition: box-shadow 0.1s, transform 0.1s, color 0.1s;
 }
 
 .btn:hover {
@@ -273,7 +276,7 @@ p {
   color: var(--muted);
   cursor: pointer;
   box-shadow: var(--raise-sm);
-  transition: box-shadow 0.2s, color 0.2s;
+  transition: box-shadow 0.1s, color 0.1s;
 }
 
 .icon-btn:hover {
@@ -345,7 +348,7 @@ p {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--muted);
-  transition: color 0.2s, box-shadow 0.2s;
+  transition: color 0.1s, box-shadow 0.1s;
 }
 
 .nav-links a:hover {
@@ -629,7 +632,7 @@ main {
   padding: 26px 16px 22px;
   border-radius: var(--r-md);
   text-align: center;
-  transition: transform 0.25s;
+  transition: transform 0.15s;
 }
 
 .stack-tile:hover {
@@ -1276,33 +1279,29 @@ main {
 
 /* Entrance animations. Only hidden while JS is running, so the page
    still shows everything if scripts fail. */
-.js-reveal .reveal {
-  opacity: 0;
-  transition:
-    opacity 0.7s ease,
-    transform 0.9s cubic-bezier(0.2, 0.75, 0.2, 1),
-    filter 0.7s ease;
-  transition-delay: calc(var(--d, 0) * 90ms);
-  will-change: opacity, transform;
+/* Uses an animation instead of a transition so hover and click
+   effects on buttons and cards stay instant. */
+.r-up { --from: translateY(28px); }
+.r-left { --from: translateX(-40px); }
+.r-right { --from: translateX(40px); }
+.r-zoom { --from: scale(0.94); }
+.r-pop { --from: translateY(16px) scale(0.92); }
+.r-flip { --from: perspective(900px) rotateY(-14deg) translateX(24px); }
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: var(--from);
+  }
 }
 
-.js-reveal .r-up { transform: translateY(56px); }
-.js-reveal .r-left { transform: translateX(-72px); }
-.js-reveal .r-right { transform: translateX(72px); }
-.js-reveal .r-zoom { transform: scale(0.86); filter: blur(6px); }
-.js-reveal .r-pop { transform: translateY(30px) scale(0.8); }
-.js-reveal .r-flip { transform: perspective(900px) rotateY(-24deg) translateX(40px); }
+.js-reveal .reveal:not(.in) {
+  opacity: 0;
+}
 
 .js-reveal .reveal.in {
-  opacity: 1;
-  transform: none;
-  filter: none;
-}
-
-/* keep the tile hover lift after the entrance has played */
-.js-reveal .stack-tile.reveal.in:hover {
-  transform: translateY(-4px);
-  transition-delay: 0s;
+  animation: slide-in 0.45s cubic-bezier(0.2, 0.75, 0.2, 1) backwards;
+  animation-delay: calc(var(--d, 0) * 40ms);
 }
 
 /* Thin progress bar along the top */
@@ -1365,7 +1364,7 @@ main {
   height: 10px;
   border-radius: 999px;
   box-shadow: var(--press-sm);
-  transition: height 0.35s ease, background 0.35s ease;
+  transition: height 0.15s ease, background 0.15s ease;
 }
 
 .slide-nav a.active {
@@ -1428,11 +1427,6 @@ main {
   .section[data-num]::before {
     display: none;
   }
-}
-
-/* elements waiting to slide in from the side must not widen the page */
-main {
-  overflow-x: clip;
 }
 
 /* ---------- Responsive ---------- */

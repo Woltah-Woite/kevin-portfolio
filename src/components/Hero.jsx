@@ -46,7 +46,7 @@ export default function Hero() {
       <aside className="profile-card neu reveal r-zoom" style={{ '--d': 2 }}>
         <div className="avatar-ring">
           <div className="avatar-well">
-            <img src={profile.photo} alt={profile.name} />
+            <img src={profile.photo} alt={profile.name} width="160" height="160" fetchpriority="high" />
           </div>
         </div>
         <span className="eyebrow">{profile.card.label}</span>

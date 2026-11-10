@@ -1,9 +1,10 @@
 // All the text on the site lives here. Edit this file to update the portfolio.
 import photo from '../assets/kevin.jpg'
 import aticeLogo from '../assets/atice-logo.png'
+import aticeLogoSmall from '../assets/atice-logo-small.png'
 
-const icon = (name, file) =>
-  `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${name}/${file}.svg`
+// Devicon icons, saved in public/icons so they load with the site
+const icon = (name, file) => `/icons/${file}.svg`
 
 export const profile = {
   name: 'Kevin O. Abad',
@@ -80,7 +81,7 @@ export const about = {
     label: 'Currently building',
     title: 'AT-ICE ERP System',
     text: 'Project manager. Inventory, sales, deliveries and HR for Bella Erin.',
-    logo: aticeLogo,
+    logo: aticeLogoSmall,
   },
 }
 
