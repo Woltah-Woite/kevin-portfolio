@@ -116,7 +116,67 @@ function UiKit() {
   )
 }
 
-const figures = { campus: Campus, vision: Vision, uikit: UiKit }
+// A night scene from the game: the moon, the Bakunawa and the HUD
+function Bathala() {
+  const stars = [[40, 30], [92, 18], [140, 44], [214, 22], [262, 52], [298, 26], [180, 70], [64, 78]]
+  const tiles = Array.from({ length: 16 }, (_, i) => i)
+  return (
+    <svg viewBox="0 0 320 220" className="fig" role="img" aria-label="Bathala's Shadow game scene">
+      <defs>
+        <linearGradient id="bs-sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#0d1030" />
+          <stop offset="1" stopColor="#2a1d4e" />
+        </linearGradient>
+        <linearGradient id="bs-serpent" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#5b4bd6" />
+          <stop offset="1" stopColor="#2fc6c9" />
+        </linearGradient>
+        <clipPath id="bs-frame"><rect x="12" y="10" width="296" height="200" rx="12" /></clipPath>
+        <mask id="bs-crescent">
+          <rect x="200" y="30" width="70" height="70" fill="#fff" />
+          <circle cx="248" cy="54" r="24" fill="#000" />
+        </mask>
+      </defs>
+
+      <g clipPath="url(#bs-frame)">
+        <rect x="12" y="10" width="296" height="200" fill="url(#bs-sky)" />
+        {stars.map(([x, y]) => <rect key={x} x={x} y={y} width="3" height="3" fill="#e9e6ff" opacity="0.8" />)}
+
+        {/* the moon the Bakunawa wants to eat */}
+        <circle cx="236" cy="62" r="26" fill="#f6efc8" mask="url(#bs-crescent)" />
+
+        {/* Bakunawa */}
+        <path d="M24 132c34-40 62 8 96-22s52-46 86-18 40 6 58-6" fill="none" stroke="url(#bs-serpent)" strokeWidth="13" strokeLinecap="round" />
+        <path d="M24 132c34-40 62 8 96-22s52-46 86-18 40 6 58-6" fill="none" stroke="#0d1030" strokeWidth="2" strokeDasharray="2 9" opacity="0.6" />
+        <circle cx="264" cy="86" r="10" fill="#2fc6c9" />
+        <rect x="266" y="81" width="4" height="4" fill="#ff5d73" />
+
+        {/* pixel ground */}
+        {tiles.map((i) => (
+          <rect key={i} x={12 + i * 19} y={176} width="19" height="34" fill={i % 2 ? '#2f6b45' : '#357a4e'} />
+        ))}
+        <rect x="12" y="172" width="296" height="6" fill="#4f9a5f" />
+
+        {/* player */}
+        <rect x="150" y="150" width="12" height="22" fill="#e9e6ff" />
+        <rect x="150" y="146" width="12" height="8" fill="#ffcf6b" />
+        <rect x="162" y="156" width="10" height="3" fill="#2fc6c9" />
+
+        {/* HUD */}
+        <rect x="22" y="20" width="96" height="40" rx="6" fill="#0d1030" opacity="0.75" />
+        <text x="30" y="34" fill="#e9e6ff" fontSize="9" fontWeight="700" fontFamily="JetBrains Mono, monospace">LV 12  BAKUNAWA</text>
+        <rect x="30" y="39" width="80" height="6" rx="3" fill="#3a2f5f" />
+        <rect x="30" y="39" width="58" height="6" rx="3" fill="#ff5d73" />
+        {[0, 1, 2, 3].map((i) => (
+          <rect key={i} x={30 + i * 21} y="49" width="17" height="5" rx="2" fill={i < 2 ? '#ffcf6b' : '#3a2f5f'} />
+        ))}
+      </g>
+      <rect x="12" y="10" width="296" height="200" rx="12" fill="none" className="lo-stroke" />
+    </svg>
+  )
+}
+
+const figures = { campus: Campus, vision: Vision, uikit: UiKit, bathala: Bathala }
 
 export default function Figure({ name }) {
   const Fig = figures[name]

@@ -246,7 +246,8 @@ p {
 
 .btn:hover {
   color: var(--accent);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--raise);
 }
 
 .btn:active {
@@ -276,11 +277,18 @@ p {
   color: var(--muted);
   cursor: pointer;
   box-shadow: var(--raise-sm);
-  transition: box-shadow 0.1s, color 0.1s;
+  transition: box-shadow 0.1s, color 0.1s, transform 0.1s;
 }
 
 .icon-btn:hover {
   color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--raise);
+}
+
+.icon-btn.static:hover {
+  transform: none;
+  box-shadow: var(--raise-sm);
 }
 
 .icon-btn:active,
@@ -352,7 +360,8 @@ p {
 }
 
 .nav-links a:hover {
-  color: var(--text);
+  color: var(--accent);
+  box-shadow: var(--raise-sm);
 }
 
 .nav-links a.active {
@@ -620,6 +629,7 @@ main {
 :root[data-theme='dark'] .code .s { color: hsl(calc(var(--hue) + 120) 60% 70%); }
 
 .stack-grid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 24px;
@@ -630,13 +640,153 @@ main {
   justify-items: center;
   gap: 6px;
   padding: 26px 16px 22px;
+  border: 0;
   border-radius: var(--r-md);
+  color: var(--text);
+  font: inherit;
   text-align: center;
-  transition: transform 0.15s;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 .stack-tile:hover {
   transform: translateY(-4px);
+  box-shadow: 12px 12px 24px var(--lo), -12px -12px 24px var(--hi);
+}
+
+.stack-tile:hover strong,
+.stack-tile.selected strong {
+  color: var(--accent);
+}
+
+.stack-tile.selected {
+  transform: none;
+  box-shadow: var(--press);
+}
+
+.stack-hint {
+  margin-top: 18px;
+  text-align: center;
+}
+
+/* Floating details card next to the clicked tile */
+.tech-card {
+  position: absolute;
+  z-index: 30;
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border-radius: var(--r-md);
+  box-shadow: var(--raise), 0 24px 50px -20px hsl(var(--hue) 40% 10% / 0.45);
+  outline: none;
+  animation: card-pop 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes card-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+/* little pointer toward the tile */
+.tech-card::before {
+  content: '';
+  position: absolute;
+  top: 34px;
+  width: 14px;
+  height: 14px;
+  background: var(--bg);
+  transform: rotate(45deg);
+}
+
+.tech-card.side-right::before {
+  left: -7px;
+  box-shadow: -3px 3px 5px var(--lo);
+}
+
+.tech-card.side-left::before {
+  right: -7px;
+  box-shadow: 3px -3px 5px var(--lo);
+}
+
+.tech-card.side-below::before {
+  display: none;
+}
+
+.tech-card-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.tech-card-head > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+}
+
+.tech-card-head h3 {
+  font-size: 1.25rem;
+}
+
+.tech-card-head .since {
+  flex-basis: 100%;
+}
+
+.small-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0;
+}
+
+.small-icon img {
+  width: 30px;
+  height: 30px;
+}
+
+.close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+}
+
+.tech-block {
+  display: grid;
+  gap: 6px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.tech-block.usage {
+  padding: 16px 18px;
+  border-radius: var(--r-sm);
+}
+
+.tech-block ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tech-block li {
+  position: relative;
+  padding-left: 16px;
+}
+
+.tech-block li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 .stack-icon {
@@ -1277,21 +1427,37 @@ main {
   user-select: none;
 }
 
-/* Entrance animations. Only hidden while JS is running, so the page
-   still shows everything if scripts fail. */
-/* Uses an animation instead of a transition so hover and click
-   effects on buttons and cards stay instant. */
-.r-up { --from: translateY(28px); }
-.r-left { --from: translateX(-40px); }
-.r-right { --from: translateX(40px); }
-.r-zoom { --from: scale(0.94); }
-.r-pop { --from: translateY(16px) scale(0.92); }
-.r-flip { --from: perspective(900px) rotateY(-14deg) translateX(24px); }
+/* Slide in / slide out animations. Content is only hidden while JS is
+   running, so the page still shows everything if scripts fail. These are
+   animations, not transitions, so button and card hovers stay instant.
+   --from is where an element comes in from, --to is where it leaves to. */
+.r-up { --from: translateY(28px); --to: translateY(-28px); }
+.r-left { --from: translateX(-40px); --to: translateX(-40px); }
+.r-right { --from: translateX(40px); --to: translateX(40px); }
+.r-zoom { --from: scale(0.94); --to: scale(0.94); }
+.r-pop { --from: translateY(16px) scale(0.92); --to: translateY(-16px) scale(0.92); }
+.r-flip { --from: perspective(900px) rotateY(-14deg) translateX(24px); --to: perspective(900px) rotateY(14deg) translateX(-24px); }
+
+/* scrolling up: come in from the top, leave through the bottom */
+.r-up[data-dir='up'] { --from: translateY(-28px); --to: translateY(28px); }
+.r-pop[data-dir='up'] { --from: translateY(-16px) scale(0.92); --to: translateY(16px) scale(0.92); }
+.r-flip[data-dir='up'] { --from: perspective(900px) rotateY(14deg) translateX(-24px); --to: perspective(900px) rotateY(-14deg) translateX(24px); }
 
 @keyframes slide-in {
   from {
     opacity: 0;
     transform: var(--from);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: var(--to);
   }
 }
 
@@ -1302,6 +1468,10 @@ main {
 .js-reveal .reveal.in {
   animation: slide-in 0.45s cubic-bezier(0.2, 0.75, 0.2, 1) backwards;
   animation-delay: calc(var(--d, 0) * 40ms);
+}
+
+.js-reveal .reveal.out {
+  animation: slide-out 0.35s ease-in forwards;
 }
 
 /* Thin progress bar along the top */

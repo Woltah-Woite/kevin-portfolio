@@ -32,30 +32,49 @@ export function useTheme() {
   return [theme, toggle]
 }
 
-// Plays each .reveal element's entrance when it scrolls into view,
-// and resets it when it leaves so the slides animate again on the way back.
+// Animates each .reveal element in when it scrolls into view and out
+// when it is about to leave. data-dir tells the CSS which way we're
+// scrolling, so things come in from and go out toward the right edge.
 export function useReveal() {
   useEffect(() => {
     const root = document.documentElement
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     root.classList.add('js-reveal')
 
-    const items = [...document.querySelectorAll('.reveal')]
+    let lastY = window.scrollY
+    let dir = 'down'
+    const onScroll = () => {
+      const y = window.scrollY
+      if (y !== lastY) dir = y > lastY ? 'down' : 'up'
+      lastY = y
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    const SHOW = 0.15
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.12) {
-            entry.target.classList.add('in')
-          } else if (!entry.isIntersecting) {
-            entry.target.classList.remove('in')
+        entries.forEach(({ target: el, isIntersecting, intersectionRatio }) => {
+          const shown = el.classList.contains('in')
+          if (isIntersecting && intersectionRatio >= SHOW && !shown) {
+            el.dataset.dir = dir
+            el.classList.remove('out')
+            el.classList.add('in')
+          } else if (isIntersecting && intersectionRatio < SHOW && shown) {
+            el.dataset.dir = dir
+            el.classList.remove('in')
+            el.classList.add('out')
+          } else if (!isIntersecting) {
+            el.classList.remove('in', 'out')
           }
         })
       },
-      { threshold: [0, 0.12] }
+      { threshold: [0, SHOW, 0.3] }
     )
-    items.forEach((el) => observer.observe(el))
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
+
     return () => {
       observer.disconnect()
+      window.removeEventListener('scroll', onScroll)
       root.classList.remove('js-reveal')
     }
   }, [])
