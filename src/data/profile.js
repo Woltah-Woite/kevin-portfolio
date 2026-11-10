@@ -11,7 +11,7 @@ export const profile = {
   photo,
   status: 'Available for work',
   role: 'Full Stack Developer',
-  tags: ['3rd Year BSIT Student', 'Project Manager, AT-ICE', 'React + Laravel'],
+  tags: ['4th Year BSIT Student', 'Project Manager, AT-ICE', 'React + Laravel'],
   intro:
     'I design and ship complete web systems, from REST APIs and database design to fast, accessible interfaces that people actually enjoy using.',
   current:
@@ -64,7 +64,7 @@ export const about = {
     label: 'Education',
     degree: 'Bachelor of Science in Information Technology',
     school: 'New York University',
-    year: '3rd Year Student',
+    year: '4th Year Student',
     focus: 'Software Systems, UX, Artificial Intelligence, ERP Automation',
   },
   building: {
@@ -81,12 +81,24 @@ export const projects = {
   text: 'Each project pairs polished visuals with practical workflows and a clean developer experience.',
   items: [
     {
+      name: 'AT-ICE ERP System',
+      year: '2026',
+      tech: ['React', 'Laravel', 'MySQL', 'Redis'],
+      roles: ['Project Manager', 'Full Stack Developer'],
+      highlights: ['Inventory with FIFO dispatch', 'Deliveries and store contracts', 'HR rates and employee performance'],
+      preview: 'AT-ICE logo',
+      logo: aticeLogo,
+      image: null,
+      link: null,
+    },
+    {
       name: 'Campus Connect AI',
       year: '2025',
       tech: ['React', 'TensorFlow', 'Node.js', 'Figma'],
       roles: ['UI/UX Lead', 'Frontend Architect', 'AI Integration'],
       highlights: ['Real-time study zone prediction', 'Mobile-friendly campus map', 'Smart scheduling assistant'],
       preview: 'Campus mobile dashboard',
+      figure: 'campus',
       image: null,
       link: null,
     },
@@ -97,6 +109,7 @@ export const projects = {
       roles: ['Computer Vision Engineer', 'Backend Developer'],
       highlights: ['Automated image annotation', 'Secure data pipeline', 'Custom object detection models'],
       preview: 'Vision dashboard',
+      figure: 'vision',
       image: null,
       link: null,
     },
@@ -107,6 +120,7 @@ export const projects = {
       roles: ['Design Systems', 'Component Library'],
       highlights: ['Modular design system', 'Accessible interaction flows', 'Dark and light themes'],
       preview: 'Component system tiles',
+      figure: 'uikit',
       image: null,
       link: null,
     },

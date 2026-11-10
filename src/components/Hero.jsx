@@ -54,7 +54,7 @@ export default function Hero() {
         <p className="muted">{profile.card.text}</p>
         <div className="card-stats">
           <div className="stat neu-in">
-            <strong>3rd</strong>
+            <strong>4th</strong>
             <span>Year BSIT</span>
           </div>
           <div className="stat neu-in">

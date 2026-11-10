@@ -1,8 +1,19 @@
 import { projects } from '../data/profile'
+import Figure from './Figures'
 
 function Preview({ project }) {
   if (project.image) {
     return <img src={project.image} alt={project.preview} className="preview-img" />
+  }
+  if (project.logo) {
+    return (
+      <div className="logo-preview">
+        <img src={project.logo} alt={project.preview} />
+      </div>
+    )
+  }
+  if (project.figure) {
+    return <Figure name={project.figure} />
   }
   // Placeholder mockup until there's a real screenshot
   return (

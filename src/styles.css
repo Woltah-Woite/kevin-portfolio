@@ -726,8 +726,8 @@ main {
 }
 
 .logo-well img {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
 }
 
@@ -777,6 +777,52 @@ main {
   object-fit: cover;
   border-radius: var(--r-sm);
 }
+
+.logo-preview {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  border-radius: var(--r-sm);
+  background: radial-gradient(circle, var(--accent-soft), transparent 70%), var(--bg);
+  box-shadow: var(--raise-sm);
+}
+
+.logo-preview img {
+  height: 82%;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(6px 10px 14px var(--lo));
+}
+
+/* Project figures */
+.fig {
+  width: 100%;
+  height: 100%;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+.fig .surface { fill: var(--bg); filter: drop-shadow(3px 4px 5px var(--lo)); }
+.fig .well { fill: var(--lo); opacity: 0.45; }
+.fig .lo-stroke { stroke: var(--lo); stroke-width: 1; }
+.fig .a { fill: var(--accent); }
+.fig .a2 { fill: var(--accent-2); }
+.fig .glow { fill: var(--accent); opacity: 0.22; }
+.fig .dim { fill: var(--muted); opacity: 0.45; }
+.fig .dim-soft { fill: var(--muted); opacity: 0.18; }
+.fig .shape { fill: var(--muted); opacity: 0.35; }
+.fig .bar { fill: var(--muted); opacity: 0.3; }
+.fig .knob { fill: var(--on-accent); }
+.fig .grid { stroke: var(--muted); stroke-width: 1; opacity: 0.2; fill: none; }
+.fig .route { stroke: var(--accent); stroke-width: 3; stroke-dasharray: 6 5; fill: none; stroke-linecap: round; }
+.fig .box { fill: none; stroke: var(--accent); stroke-width: 2; }
+.fig .box.b2 { stroke: var(--accent-2); }
+.fig .check-mark { fill: none; stroke: var(--on-accent); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.fig .label { fill: var(--muted); font-size: 10px; font-weight: 600; }
+.fig .small { fill: var(--text); font-size: 9px; font-weight: 600; }
+.fig .big { fill: var(--accent); font-size: 24px; font-weight: 800; }
+.fig .tag { fill: var(--on-accent); font-size: 8.5px; font-weight: 700; }
+.fig .mid { text-anchor: middle; }
+.fig .small.mid { fill: var(--muted); }
 
 .mock {
   position: relative;
