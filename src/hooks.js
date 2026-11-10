@@ -53,18 +53,18 @@ export function useReveal() {
     const SHOW = 0.15
     const observer = new IntersectionObserver(
       (entries) => {
+        // state lives in data-reveal, not in className, because React
+        // rewrites className whenever a component re-renders
         entries.forEach(({ target: el, isIntersecting, intersectionRatio }) => {
-          const shown = el.classList.contains('in')
+          const shown = el.dataset.reveal === 'in'
           if (isIntersecting && intersectionRatio >= SHOW && !shown) {
             el.dataset.dir = dir
-            el.classList.remove('out')
-            el.classList.add('in')
+            el.dataset.reveal = 'in'
           } else if (isIntersecting && intersectionRatio < SHOW && shown) {
             el.dataset.dir = dir
-            el.classList.remove('in')
-            el.classList.add('out')
+            el.dataset.reveal = 'out'
           } else if (!isIntersecting) {
-            el.classList.remove('in', 'out')
+            delete el.dataset.reveal
           }
         })
       },

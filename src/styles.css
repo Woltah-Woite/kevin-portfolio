@@ -1723,16 +1723,16 @@ main {
   }
 }
 
-.js-reveal .reveal:not(.in) {
+.js-reveal .reveal:not([data-reveal='in']) {
   opacity: 0;
 }
 
-.js-reveal .reveal.in {
+.js-reveal .reveal[data-reveal='in'] {
   animation: slide-in 0.45s cubic-bezier(0.2, 0.75, 0.2, 1) backwards;
   animation-delay: calc(var(--d, 0) * 40ms);
 }
 
-.js-reveal .reveal.out {
+.js-reveal .reveal[data-reveal='out'] {
   animation: slide-out 0.35s ease-in forwards;
 }
 
