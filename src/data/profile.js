@@ -246,8 +246,8 @@ export const certificates = {
       posted: 'September 5, 2024',
       summary: 'Awarded for satisfactory completion of all coursework in the Oracle Academy Java Fundamentals course.',
       skills: ['Java', 'Object-oriented programming', 'Problem solving'],
-      // set to '/certificates/file.pdf' to show a View PDF button
-      file: '/certificates/java-fundamentals.pdf',
+      // set to an image of the certificate to show a View certificate button
+      image: '/certificates/java-fundamentals.webp',
     },
   ],
 }

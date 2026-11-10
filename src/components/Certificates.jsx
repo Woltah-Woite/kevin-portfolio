@@ -31,6 +31,11 @@ function CertModal({ cert, onClose, onView }) {
     }
   }, [onClose])
 
+  // start loading the certificate image now so it opens instantly
+  useEffect(() => {
+    if (cert.image) new Image().src = cert.image
+  }, [cert.image])
+
   return createPortal(
     <div className="modal-backdrop" onPointerDown={(e) => e.target === e.currentTarget && onClose()}>
       <div ref={ref} className="cert-modal neu" role="dialog" aria-modal="true" aria-label={cert.title} tabIndex={-1}>
@@ -58,7 +63,7 @@ function CertModal({ cert, onClose, onView }) {
           {cert.skills.map((s) => <span key={s} className="chip">{s}</span>)}
         </div>
 
-        {cert.file && (
+        {cert.image && (
           <button type="button" className="btn btn-accent" onClick={onView}>
             View certificate <Arrow />
           </button>
@@ -128,7 +133,7 @@ export default function Certificates() {
         <CertModal cert={certificates.items[open]} onClose={close} onView={openViewer} />
       )}
       {open !== null && viewing && (
-        <CertViewer file={certificates.items[open].file} title={certificates.items[open].title} onClose={closeViewer} />
+        <CertViewer image={certificates.items[open].image} title={certificates.items[open].title} onClose={closeViewer} />
       )}
     </section>
   )
