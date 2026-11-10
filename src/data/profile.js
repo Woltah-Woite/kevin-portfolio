@@ -171,7 +171,7 @@ export const contact = {
   eyebrow: 'Send a message',
   title: "Let's work together.",
   text: "Have a project or a question? I'd love to hear from you.",
-  email: 'kitamotoOTOMOBUS@gmail.com',
+  email: 'WoltaWoite@gmail.com',
   location: 'San Jose del Monte, Bulacan, Philippines',
-  phone: '+63 929 229 9667',
+  phone: '+63 994 824 4084',
 }
